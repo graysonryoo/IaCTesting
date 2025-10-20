@@ -5,6 +5,7 @@ on:
     branches: ["**"]
   pull_request:
     branches: ["**"]
+  workflow_dispatch: {}
 
 jobs:
   codacy-analysis:
@@ -13,17 +14,19 @@ jobs:
       contents: read
       security-events: write
       actions: read
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@v4
         with:
-          project_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          upload: true
-          output: results.sarif
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}  # <-- hyphen, not underscore
           format: sarif
+          output: results.sarif
+          # directory: .            # (optional) path to scan
+          # verbose: true           # (optional) useful while debugging
 
       - name: Upload SARIF to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
