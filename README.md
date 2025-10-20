@@ -158,7 +158,7 @@ https://github.com/akondrahman/IaCTesting/blob/fc4e7ab85bf04234869f00d4e4e173c4d
 
 In the first example we can see that the role *Prepare web server on localhost to serve python packages* is running the task in localhost environment. Whereas in the second example we can see that role *Verify not using a build host* has executed the task in container1 environment. So example 1 has antipattern of testing only in localhost.
 
-
+Trigger CI
 #### Linter Strangler
 ###### Definition 
 ....Will Be Updated Later....
