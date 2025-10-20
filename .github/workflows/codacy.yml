@@ -22,13 +22,6 @@ jobs:
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@v4
         with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}  # <-- hyphen, not underscore
-          format: sarif
-          output: results.sarif
-          # directory: .            # (optional) path to scan
-          # verbose: true           # (optional) useful while debugging
-
-      - name: Upload SARIF to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results.sarif
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          format: sarif            # produce SARIF
+          output: results.sarif    # optional: artifact on runner (no extra upload step)
